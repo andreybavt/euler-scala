@@ -1,12 +1,13 @@
+val LIMIT: BigDecimal = 1000000
 def fac(n: BigDecimal): BigDecimal = {
   if (n <= 1) 1 else n * fac(n - 1)
 }
 def chose(n: Int, k: Int): BigDecimal = fac(BigDecimal(n)) / (fac(BigDecimal(k)) * fac(BigDecimal(n - k)))
 
 def findNumberOfChoseGreaterThan1M(n: Int): Int = {
-  if (chose(n, n / 2) < 1000000) 0
+  if (chose(n, n / 2) < LIMIT) 0
   def helper(n: Int, k: Int, accumulator: Int): Int = {
-    if (chose(n, k) < 1000000) accumulator
+    if (chose(n, k) < LIMIT) accumulator
     else {
       helper(n, k - 1, accumulator + 1)
     }
